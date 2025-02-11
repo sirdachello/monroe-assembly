@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+}
+body {
+    background-image: linear-gradient(lch(80% 80 70), red, black);
+    height: 100vh;
+}
+.container {
+    padding-top: 50px;
+    width: 90vw;
+    margin-inline: auto;
+}
+.puzzle-grid {
+    border: 5px solid black;
+    margin: auto;
+    border-radius: 10px;
+    padding: 20px;
+    width: fit-content;
+    display: grid;
+    grid-template: repeat(5, 1fr)/repeat(5, 1fr);
+    margin-bottom: 20px;
+}
+.puzzle-piece-slot, .puzzle-piece {
+    width: 85px;
+    height: 85px;
+}
+.puzzle-piece-slot {
+    outline: 1px solid rgb(136, 4, 4);
+}
+
+.puzzle-piece-bin {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+}
