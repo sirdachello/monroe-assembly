@@ -1,13 +1,10 @@
 "use strict";
 let activePiece;
 document.addEventListener('mousedown', (e) => {
-    e.preventDefault(); // Drag bugfix
-    console.log('mousedown');
-    
+    e.preventDefault(); // Drag bugfix    
     if(e.target.classList.contains('puzzle-piece')) {
         activePiece = e.target;
         activePiece.style.pointerEvents = 'none';
-        console.log('moving puzzle piece');
     } else {
         return
     }
@@ -16,11 +13,16 @@ document.addEventListener('mouseup', (e) => {
         if (!activePiece) return
         if(e.target.classList.contains('puzzle-piece-slot')) {
             const slotPosition = e.target.getBoundingClientRect();
+            const prevPositionY = activePiece.style.top;
+            const prevPositionX = activePiece.style.left;
             activePiece.style.position = 'absolute';
             activePiece.style.top = `${slotPosition.top}px`
             activePiece.style.left = `${slotPosition.left}px`           
-            activePiece.style.pointerEvents = 'auto';   
-            updateScore()
+            activePiece.style.pointerEvents = 'auto';  
+             
+            if(parseInt(prevPositionY) + parseInt(prevPositionX) != (slotPosition.top + slotPosition.left).toFixed(0)) {
+                updateScore()
+            }
         } else  {
             activePiece.style.pointerEvents = 'auto';
             activePiece.style.position = 'relative';
