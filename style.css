@@ -11,6 +11,7 @@ body {
     margin-inline: auto;
 }
 .puzzle-grid {
+    user-select: none;
     border: 5px solid black;
     margin: auto;
     border-radius: 10px;
@@ -35,4 +36,8 @@ body {
     gap: 2px;
     justify-content: center;
     align-items: center;
+}
+p {
+    text-align: center;
+    font-size: 2rem;
 }

@@ -1,10 +1,13 @@
 "use strict";
 let activePiece;
 document.addEventListener('mousedown', (e) => {
+    e.preventDefault(); // Drag bugfix
+    console.log('mousedown');
+    
     if(e.target.classList.contains('puzzle-piece')) {
         activePiece = e.target;
         activePiece.style.pointerEvents = 'none';
-        console.log('moving piece');
+        console.log('moving puzzle piece');
     } else {
         return
     }
@@ -17,6 +20,7 @@ document.addEventListener('mouseup', (e) => {
             activePiece.style.top = `${slotPosition.top}px`
             activePiece.style.left = `${slotPosition.left}px`           
             activePiece.style.pointerEvents = 'auto';   
+            updateScore()
         } else  {
             activePiece.style.pointerEvents = 'auto';
             activePiece.style.position = 'relative';
@@ -67,6 +71,10 @@ window.addEventListener('resize', () => {
     })
 })
 
+function updateScore() {
+    const score = document.getElementById('score');
+    score.textContent++ 
+}
 
 
 
