@@ -29,6 +29,10 @@ function handleMouseDown(e) {
         playSound(pickUpSound);
         activePiece = e.target;
         activePiece.style.pointerEvents = 'none';
+
+        const rect = activePiece.getBoundingClientRect();
+        activePiece.dataset.prevX = rect.left;
+        activePiece.dataset.prevY = rect.top;
     } else {
         return
     }
@@ -38,8 +42,9 @@ function handleMouseUp(e) {
     if (!activePiece) return
     if(e.target.classList.contains('puzzle-piece-slot')) {
         const slotPosition = e.target.getBoundingClientRect();
-        const prevPositionY = parseInt(activePiece.style.top);
-        const prevPositionX = parseInt(activePiece.style.left);
+        const prevX = parseFloat(activePiece.dataset.prevX);
+        const prevY = parseFloat(activePiece.dataset.prevY);
+
         activePiece.style.position = 'absolute';
         activePiece.style.top = `${slotPosition.top}px`
         activePiece.style.left = `${slotPosition.left}px`           
@@ -51,7 +56,7 @@ function handleMouseUp(e) {
             activePiece.dataset.placed = "false";
         }
          
-        if (prevPositionY !== Math.round(slotPosition.top) || prevPositionX !== Math.round(slotPosition.left)) {
+        if (prevX !== slotPosition.left || prevY !== slotPosition.top) {
             updateScore();
         }
     } else  {
