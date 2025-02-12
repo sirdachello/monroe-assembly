@@ -28,6 +28,12 @@ body {
 .puzzle-piece-slot {
     outline: 1px solid rgb(136, 4, 4);
 }
+.puzzle-piece {
+    transition: transform 200ms ease;
+}
+.puzzle-piece:active {
+    transform: scale(1.2);
+}
 
 .puzzle-piece-bin {
     padding: 20px;
